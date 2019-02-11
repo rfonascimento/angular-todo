@@ -19,8 +19,8 @@
     <tr *ngFor="let todo of todos">
       <td>{{ todo.id }}</td>
       <td>{{ todo.todo }}</td>
-      <td><input type="checkbox" [(ngModel)]="todo.done"></td>
-      <td><button (click)="remove(todo.id)">Delete</button></td>
+      <td><input type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.done"></td>
+      <td><button (click)="remove(todo)">Delete</button></td>
     </tr>
   </tbody>
 </table>

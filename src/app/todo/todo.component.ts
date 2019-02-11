@@ -17,6 +17,7 @@ export class TodoComponent implements OnInit {
   ) { 
     _store.select('todos')
       .subscribe(todos => {
+        console.log("TODOS UPDATE");
         this.todos = todos;
       })
   }
@@ -36,8 +37,18 @@ export class TodoComponent implements OnInit {
     })
   }
 
-  remove(todoId):void {
-    this.todos = this.todos.filter((todo)=> todo.id != todoId);
+  remove(todo: Todo):void {
+    this._store.dispatch({
+      type: 'REMOVE_TODO',
+      payload: todo
+    });
+  }
+
+  toggleTodoComplete(todo): void {
+    this._store.dispatch({
+      type: 'TOGGLE_TODO',
+      payload: todo
+    });
   }
 
 }
